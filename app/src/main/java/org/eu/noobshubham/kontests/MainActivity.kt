@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     ContestsList(contests = mainViewModel.kontestsListResponse)
-                    mainViewModel.getKontestsList()
                 }
             }
         }
@@ -42,5 +41,4 @@ fun ContestsList(contests: List<Kontests>) {
     LazyColumn {
         itemsIndexed(contests) { _, item -> KontestsItem(kontests = item) }
     }
-
 }

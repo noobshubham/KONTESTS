@@ -1,5 +1,7 @@
 package org.eu.noobshubham.kontests.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +11,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -18,6 +21,8 @@ import org.eu.noobshubham.kontests.model.Kontests
 
 @Composable
 fun KontestsItem(kontests: Kontests) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(kontests.url))
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .fillMaxWidth(1f)
@@ -65,15 +70,15 @@ fun KontestsItem(kontests: Kontests) {
                         painterResource(id = R.drawable.clock),
                         contentDescription = "Start Time Icon"
                     )
-                    Text(text = "Start Time")
+                    Text(text = kontests.start_time)
                     Icon(
                         painter = painterResource(id = R.drawable.finish_line),
                         contentDescription = "Start Time Icon"
                     )
-                    Text(text = "Start Time")
+                    Text(text = kontests.end_time)
                 }
                 Button(
-                    onClick = { /* ... */ },
+                    onClick = { context.startActivity(intent) },
                     // Uses ButtonDefaults.ContentPadding by default
                     contentPadding = PaddingValues(
                         start = 20.dp,
